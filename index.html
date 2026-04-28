@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyMindAI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ── SIDEBAR ─────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">StudyMind<span class="logo-ai">AI</span></span>
+      </div>
+      <button class="icon-btn" onclick="toggleSidebar()" title="Close sidebar">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+
+    <button class="new-topic-btn" onclick="newTopic()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      New Topic
+    </button>
+
+    <div class="section-label">Recent Topics</div>
+    <div class="topic-list" id="topicList"></div>
+
+    <div class="sidebar-footer">
+      <div class="status-row" id="statusRow">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Checking Ollama...</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ────────────────────────────────────────── -->
+  <main class="main" id="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <button class="icon-btn" id="menuBtn" onclick="toggleSidebar()" title="Toggle sidebar">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+
+      <span class="topbar-title" id="topbarTitle">StudyMindAI</span>
+
+      <!-- Notes Upload Button -->
+      <div class="topbar-right">
+        <label class="upload-notes-btn" title="Upload notes (PDF or TXT)">
+          <input type="file" id="notesFile" accept=".pdf,.txt,.md" style="display:none" onchange="uploadNotes(this)"/>
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          Upload Notes
+        </label>
+
+        <div class="notes-badge" id="notesBadge" style="display:none">
+          <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          Notes loaded
+          <button onclick="clearNotes()" title="Remove notes">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="messages-wrap" id="messagesWrap">
+      <div class="messages-inner" id="messagesInner">
+
+        <!-- Welcome screen -->
+        <div class="welcome" id="welcome">
+          <div class="welcome-icon">◈</div>
+          <h1>What do you want to study?</h1>
+          <p>Ask anything — upload your notes for context-aware answers</p>
+          <div class="chips">
+            <button class="chip" onclick="useChip(this)">Explain Newton's laws of motion</button>
+            <button class="chip" onclick="useChip(this)">Summarize my uploaded notes</button>
+            <button class="chip" onclick="useChip(this)">Give me 5 MCQs on photosynthesis</button>
+            <button class="chip" onclick="useChip(this)">Explain Big O notation with examples</button>
+            <button class="chip" onclick="useChip(this)">What are key topics for GATE CS?</button>
+            <button class="chip" onclick="useChip(this)">Make a revision plan for tomorrow's exam</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Input bar -->
+    <div class="input-area">
+      <div class="input-box" id="inputBox">
+        <textarea
+          id="userInput"
+          placeholder="Ask a question..."
+          rows="1"
+          onkeydown="handleKey(event)"
+          oninput="autoResize(this)"
+        ></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+        </button>
+      </div>
+      <p class="input-hint">StudyMindAI runs offline via Ollama · Answers may not always be perfect</p>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
