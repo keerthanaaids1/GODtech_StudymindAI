@@ -1,0 +1,51 @@
+
+# STUDYMIND AI - PROJECT PROGRESS REPORT
+TechFusion 2.0 | Team Lead: Keerthana 
+
+=======================================================
+1. PROJECT GOAL 
+=======================================================
+A fully offline AI study assistant that runs 
+on your laptop. Making AI education offline, 
+private, and accessible for every Indian student.
+
+=======================================================
+2. DEVELOPMENT STATUS (APRIL 2026) 
+=======================================================
+[COMPLETED] AI Engine Setup:
+- Installed Ollama (local AI runtime).
+- Configured Llama 3 (7B parameter model).
+- Set up nomic-embed-text for embeddings.
+
+[COMPLETED] Backend Foundation:
+- Developed Python FastAPI server.
+- Connected ChromaDB (local vector database).
+
+[IN PROGRESS] RAG Pipeline :
+- Integrating PyPDF2 for parsing textbooks.
+- Implementing Source Citation logic to show 
+  exactly which page answers come from.
+
+[IN PROGRESS] UI/Frontend:
+- Built core React.js structure.
+- Added Ocean & Forest themes via Tailwind CSS.
+
+=======================================================
+3. TECHNICAL STACK SUMMARY 
+=======================================================
+- AI Engine: LlamaIndex RAG Pipeline
+- Models:    Llama 3 & Nomic-Embed
+- Backend:   FastAPI (Python)
+- Database:  ChromaDB (Local)
+- Frontend:  React.js & Tailwind CSS
+
+=======================================================
+4. SOCIAL IMPACT 
+=======================================================
+- Impact: 500 million+ Indian students lack 
+  consistent internet access.
+- Accessibility: Works without internet in 
+  rural areas and Tier 2/3 cities.
+- Privacy: Student data never leaves the device.
+- Tagline: "NotebookLM for every student, 
+  even without internet."
